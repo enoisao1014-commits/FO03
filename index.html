@@ -1,23 +1,73 @@
+<!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>FO</title>
-        <style type="text/css">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>FO</title>
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, object, iframe, pre, code, p, img, blockquote,
-form, fieldset, legend, table, th, td, caption, tbody, tfoot, thead {
-	margin: 0;
-	padding: 0;
-	width:100%
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-		</style>
-    </head>
-    <body bgcolor="#00000E">
-      <div align="center">
-  <a href="02.html">
-       <img src="01.png">
-	  </a>
-        </div>
-    </body>
+    body {
+      background: #00000E;
+    }
+
+    .preview {
+      width: 100%;
+      text-align: center;
+    }
+
+    .preview img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preview">
+    <img id="mainImage" src="01_11.png" alt="FUSION OUTDOOR preview">
+  </div>
+
+  <script>
+    const images = [
+      "01_11.png",
+      "02_11.png",
+      "03_11.png",
+      "04_11.png",
+      "05_11.png",
+      "06_11.png",
+      "07_11.png",
+      "08_11.png",
+      "09_11.png"
+    ];
+
+    let currentIndex = 0;
+    const mainImage = document.getElementById("mainImage");
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto"
+      });
+
+      // 念のため、ブラウザ差異対策
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
+    mainImage.addEventListener("click", function () {
+      currentIndex = (currentIndex + 1) % images.length;
+      mainImage.src = images[currentIndex];
+
+      // 画像切り替え後、ページ上部へ戻す
+      requestAnimationFrame(scrollToTop);
+    });
+  </script>
+</body>
 </html>
